@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_ejemplo1/utils/my_tab.dart';
 
+import '../tab/burger_tab.dart';
+import '../tab/donut_tab.dart';
+import '../tab/pancake_tab.dart';
+import '../tab/pizza_tab.dart';
+import '../tab/smoothie_tab.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -17,6 +23,7 @@ List<Widget> myTabs = [
 ];
 
 class _HomePageState extends State<HomePage> {
+  late TabController _tabController;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -60,12 +67,14 @@ class _HomePageState extends State<HomePage> {
             // 3. Contenido de las pestañas (TabBarView)
             Expanded(
               child: TabBarView(
+                // controller: _tabController,
+                
                 children: [
-                  Center(child: Text("Donut Page")),
-                  Center(child: Text("Burger Page")),
-                  Center(child: Text("Smoothie Page")),
-                  Center(child: Text("Pancake Page")),
-                  Center(child: Text("Pizza Page")),
+                  DonutTab(),
+                  BurgerTab(),
+                  SmoothieTab(),
+                  PancakeTab(),
+                  PizzaTab(),
                 ],
               ),
             ),
