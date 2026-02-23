@@ -2,54 +2,38 @@ import 'package:proyecto_ejemplo1/utils/donut_tile.dart';
 import 'package:flutter/material.dart';
 
 class DonutTab extends StatelessWidget {
-   DonutTab({super.key});
+  final void Function(String, String) onAddToCart;
 
-  //List of donuts
+  DonutTab({super.key, required this.onAddToCart});
+
   final List donutOnSale = [
-    // donutFlavor, donutPrice, donutColor, donutImagePath, donutProvider
-    [
-      'Chocolate',
-      '100',
-      Colors.brown,
-      "lib/images/chocolate_donut.png",
-      'Starbucks',
-    ],
-    [
-      'Strawberry',
-      '89',
-      Colors.red,
-      "lib/images/strawberry_donut.png",
-      'Krispy Kreme',
-    ],
-    [
-      'Ice Cream',
-      '95',
-      Colors.blue,
-      "lib/images/icecream_donut.png",
-      "Dunkin' Donuts",
-    ],
+    ['Chocolate', '100', Colors.brown, "lib/images/chocolate_donut.png", 'Starbucks'],
+    ['Strawberry', '89', Colors.red, "lib/images/strawberry_donut.png", 'Krispy Kreme'],
+    ['Ice Cream', '95', Colors.blue, "lib/images/icecream_donut.png", "Dunkin' Donuts"],
     ['Grape', '70', Colors.purple, "lib/images/grape_donut.png", 'Oxxo'],
   ];
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2, childAspectRatio: 1 /1.4,),
-        //tamaño de cada columna
-        
-      itemBuilder: (context, index){
+      itemCount: donutOnSale.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 1 / 1.5,
+      ),
+      itemBuilder: (context, index) {
         return DonutTile(
-      //lo que se va a construir
-        donutFlavor: donutOnSale[index][0],
-        donutPrice: donutOnSale[index][1],
-        donutColor: donutOnSale[index][2],
-        donutImagePath: donutOnSale[index][3],
-        donutProvider: donutOnSale[index][4],
-      );
+          donutFlavor: donutOnSale[index][0],
+          donutPrice: donutOnSale[index][1],
+          donutColor: donutOnSale[index][2],
+          donutImagePath: donutOnSale[index][3],
+          donutProvider: donutOnSale[index][4],
+          onPressed: () => onAddToCart(
+            donutOnSale[index][0], 
+            donutOnSale[index][1]
+          ),
+        );
       },
-      
     );
-    
   }
 }

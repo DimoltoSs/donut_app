@@ -6,7 +6,17 @@ class DonutTile extends StatelessWidget {
   final dynamic donutColor;
   final String donutImagePath;
   final String donutProvider;
-  const DonutTile({super.key, required this.donutFlavor, required this.donutPrice, required this.donutColor, required this.donutImagePath, required this.donutProvider});
+  final void Function()? onPressed;
+
+  const DonutTile({
+    super.key,
+    required this.donutFlavor,
+    required this.donutPrice,
+    required this.donutColor,
+    required this.donutImagePath,
+    required this.donutProvider,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,74 +29,56 @@ class DonutTile extends StatelessWidget {
         ),
         child: Column(
           children: [
-            //etiqueta del precio
             Row(
-              //alinear a la derecha en el eje x
-              //crossAxis para eje y
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 8,
-                    horizontal: 18,
-                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 18),
                   decoration: BoxDecoration(
                     color: donutColor[200],
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(24),
                       bottomLeft: Radius.circular(24),
-                    )
+                    ),
                   ),
                   child: Text('\$$donutPrice',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: donutColor[800],
-                  ),
-                  ),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: donutColor[800])),
                 )
               ],
             ),
-            //imagen del donut
-            Padding(padding: const EdgeInsets.symmetric(
-              vertical: 12, horizontal: 24),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
               child: Image.asset(donutImagePath),
             ),
-            //nombre del donut
-            Text(
-              donutFlavor,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-            ),
+            Text(donutFlavor,
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
             const SizedBox(height: 4),
-            //nombre del proveedor
-            Text(
-              donutProvider,
-              style: TextStyle(
-                color:  Colors.grey[600]
-              ),
-            ),
+            Text(donutProvider, style: TextStyle(color: Colors.grey[600])),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Icon(Icons.favorite, color: Colors.pink[400]),
-                  Text("ADD", style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    decoration: TextDecoration.underline,
-              
+                  GestureDetector(
+                    onTap: onPressed,
+                    child: const Text(
+                      "ADD",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          decoration: TextDecoration.underline),
+                    ),
                   ),
-                  )
                 ],
               ),
             )
           ],
         ),
       ),
-      );
+    );
   }
 }
