@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_ejemplo1/utils/pancake_tile.dart';
+import '../utils/pancake_tile.dart';
 
 class PancakeTab extends StatelessWidget {
-  final void Function(String, String) onAddToCart;
+  final void Function(String, String, dynamic, String) onAddToCart;
   PancakeTab({super.key, required this.onAddToCart});
 
   final List pancakesOnSale = [
@@ -28,6 +28,8 @@ class PancakeTab extends StatelessWidget {
           onPressed: () => onAddToCart(
             pancakesOnSale[index][0],
             pancakesOnSale[index][1],
+            pancakesOnSale[index][2],
+            pancakesOnSale[index][3],
           ),
         );
       },

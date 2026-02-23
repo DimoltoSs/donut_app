@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_ejemplo1/utils/smoothie_tile.dart';
+import '../utils/smoothie_tile.dart';
 
 class SmoothieTab extends StatelessWidget {
-  final void Function(String, String) onAddToCart;
+  final void Function(String, String, dynamic, String) onAddToCart;
   SmoothieTab({super.key, required this.onAddToCart});
 
   final List smoothiesOnSale = [
@@ -28,6 +28,8 @@ class SmoothieTab extends StatelessWidget {
           onPressed: () => onAddToCart(
             smoothiesOnSale[index][0],
             smoothiesOnSale[index][1],
+            smoothiesOnSale[index][2],
+            smoothiesOnSale[index][3],
           ),
         );
       },

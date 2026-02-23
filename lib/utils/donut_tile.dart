@@ -36,16 +36,9 @@ class DonutTile extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 18),
                   decoration: BoxDecoration(
                     color: donutColor[200],
-                    borderRadius: const BorderRadius.only(
-                      topRight: Radius.circular(24),
-                      bottomLeft: Radius.circular(24),
-                    ),
+                    borderRadius: const BorderRadius.only(topRight: Radius.circular(24), bottomLeft: Radius.circular(24)),
                   ),
-                  child: Text('\$$donutPrice',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: donutColor[800])),
+                  child: Text('\$$donutPrice', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: donutColor[800])),
                 )
               ],
             ),
@@ -53,8 +46,7 @@ class DonutTile extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
               child: Image.asset(donutImagePath),
             ),
-            Text(donutFlavor,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+            Text(donutFlavor, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
             const SizedBox(height: 4),
             Text(donutProvider, style: TextStyle(color: Colors.grey[600])),
             Padding(
@@ -65,13 +57,7 @@ class DonutTile extends StatelessWidget {
                   Icon(Icons.favorite, color: Colors.pink[400]),
                   GestureDetector(
                     onTap: onPressed,
-                    child: const Text(
-                      "ADD",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          decoration: TextDecoration.underline),
-                    ),
+                    child: const Text("ADD", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, decoration: TextDecoration.underline)),
                   ),
                 ],
               ),

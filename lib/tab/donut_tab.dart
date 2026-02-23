@@ -1,9 +1,8 @@
-import 'package:proyecto_ejemplo1/utils/donut_tile.dart';
 import 'package:flutter/material.dart';
+import '../utils/donut_tile.dart';
 
 class DonutTab extends StatelessWidget {
-  final void Function(String, String) onAddToCart;
-
+  final void Function(String, String, dynamic, String) onAddToCart;
   DonutTab({super.key, required this.onAddToCart});
 
   final List donutOnSale = [
@@ -17,10 +16,7 @@ class DonutTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       itemCount: donutOnSale.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 1 / 1.5,
-      ),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 1 / 1.5),
       itemBuilder: (context, index) {
         return DonutTile(
           donutFlavor: donutOnSale[index][0],
@@ -29,8 +25,10 @@ class DonutTab extends StatelessWidget {
           donutImagePath: donutOnSale[index][3],
           donutProvider: donutOnSale[index][4],
           onPressed: () => onAddToCart(
-            donutOnSale[index][0], 
-            donutOnSale[index][1]
+            donutOnSale[index][0],
+            donutOnSale[index][1],
+            donutOnSale[index][2],
+            donutOnSale[index][3],
           ),
         );
       },
